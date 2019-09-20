@@ -4,7 +4,6 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {Text, View, StyleSheet, Image, TextInput,TouchableOpacity} from 'react-native';
 import Dimensions from 'Dimensions';
 
-
 const theme = {
     screenWidth: Math.round(Dimensions.get('window').width),
     screenHeight: Math.round(Dimensions.get('window').height),
@@ -17,7 +16,16 @@ const Utils = {
     }
 }
 
+
 export default class LoginScreen extends Component {
+    constructor(props){
+        super(props);
+        this.navigation = this.props.navigation;
+    }
+
+    checkLogin(){
+        this.navigation.navigate('dashboard');
+    }
     render(){
         return(
             <View style={styles.container}>        
@@ -38,14 +46,14 @@ export default class LoginScreen extends Component {
                 <View style={styles.inputBox_email}>
                     <Icon name="mail" size={26} style={styles.inputIcon} />
                     <TextInput
-                    style={styles.inputs}
-                    // eslint-disable-next-line no-shadow
-                    // onChangeText={email => this.setState({email})}
-                    underlineColorAndroid="rgba(0,0,0,0)"
-                    placeholder="Email"
-                    placeholderTextColor="#818181"
-                    selectionColor="#fff"
-                    keyboardType="email-address"
+                      style={styles.inputs}
+                      // eslint-disable-next-line no-shadow
+                      // onChangeText={email => this.setState({email})}
+                      underlineColorAndroid="rgba(0,0,0,0)"
+                      placeholder="Email"
+                      placeholderTextColor="#6a6a6a"
+                      selectionColor="#fff"
+                      keyboardType="email-address"
                     // value={email}
                     // onSubmitEditing={() => this.password.focus()}
                     />
@@ -59,16 +67,16 @@ export default class LoginScreen extends Component {
                     underlineColorAndroid="rgba(0,0,0,0)"
                     placeholder="Password"
                     secureTextEntry={true}
-                    placeholderTextColor="#818181"
+                    placeholderTextColor="#6a6a6a"
                     // value={password}
                     // ref={input => (this.password = input)}
                     />
                 </View>
                 <TouchableOpacity
                     style={styles.button}
-                    // onPress={() => {
-                    // this.checkLogin();
-                    // }}
+                    onPress={() => {
+                      this.checkLogin();
+                    }}
                     >
                     <LinearGradient
                     colors={['#2aace3', '#1d759b']}
@@ -102,6 +110,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
+        backgroundColor:'#ffffff',
     },
       logoBox: {
         width: theme.screenWidth,
@@ -121,9 +130,11 @@ const styles = StyleSheet.create({
         height: 30,
         marginLeft: 15,
         justifyContent: 'center',
+        color:'#6a6a6a',
+        opacity:0.6
       },
       inputBox_email: {
-        borderColor: '#eeeeee',
+        borderColor: '#6a6a6a',
         backgroundColor: '#FFFFFF',
         borderRadius: 30,
         borderWidth: 1,
@@ -134,7 +145,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       inputBox: {
-        borderColor: '#eeeeee',
+        borderColor: '#6a6a6a',
         backgroundColor: '#FFFFFF',
         borderRadius: 30,
         borderWidth: 1,
@@ -181,6 +192,8 @@ const styles = StyleSheet.create({
         marginTop: 40,
         color: '#2aace3',
         textDecorationLine: 'underline',
+        borderBottomWidth:1, 
+        borderBottomColor:'#2aace3'
         // fontFamily: theme.dashboad.font,
       },
 });
