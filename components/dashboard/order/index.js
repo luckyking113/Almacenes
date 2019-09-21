@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, ScrollView, Image } from 'react-native';
-
 import Dimensions from 'Dimensions';
 
 const screenSize = {
@@ -59,7 +58,7 @@ export default class OrderScreen extends Component {
                             <Text>$20.00 | Product name</Text>
                             <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
-                    </View>                
+                    </View>     
                 </ScrollView>        
             </View>
         );

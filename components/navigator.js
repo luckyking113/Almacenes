@@ -7,14 +7,16 @@
  */
 
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, StatusBar} from 'react-native';
-import {createSwitchNavigator, createAppContainer, NavigationActions } from 'react-navigation';
+import { StyleSheet } from 'react-native';
+import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './login/loginscreen';
 import MainDashboard from './dashboard';
 import OrderScreen from './dashboard/order';
 import TipsScreen from './dashboard/tips';
 import HeaderMain from './dashboard/headerMain';
+import Orders from './dashboard/orders';
+import SplashScreen from './splash';
 
 /*export default class Navigator extends Component {
     componentWillMount(){
@@ -28,6 +30,9 @@ import HeaderMain from './dashboard/headerMain';
 };*/
 const AppSwitchNavigator = createStackNavigator(
     {
+        splash:{
+            screen:SplashScreen
+        },
         login:{
             screen:LoginScreen,    
         },
@@ -45,10 +50,16 @@ const AppSwitchNavigator = createStackNavigator(
             navigationOptions:{
                 header:<HeaderMain />
             }
+        },
+        orders:{
+            screen:Orders,
+            navigationOptions:{
+                header:<HeaderMain />
+            }
         }
     },
     {
-        initialRouteName: 'login',
+        initialRouteName: 'dashboard',
         navigationOptions:{
             header:null,
         },
@@ -58,7 +69,7 @@ const AppSwitchNavigator = createStackNavigator(
     },
 );
 
-export default  createAppContainer(AppSwitchNavigator);
+export default createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
     container: {

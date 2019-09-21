@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {Image, View, StyleSheet, StatusBar} from 'react-native';
+import { StyleSheet, StatusBar} from 'react-native';
 import Navigator from './components/navigator';
 
 export default class App extends React.Component {
@@ -30,10 +30,6 @@ export default class App extends React.Component {
 
 	render(){
 		return (
-			// <View style={styles.container}>
-			// 	<StatusBar />  
-			// 	{this.state.loaded?<Navigator />:<Image source = {require('./assets/splash.gif')}/>}				
-			// </View>	
 			<Navigator />
 		);
 	}

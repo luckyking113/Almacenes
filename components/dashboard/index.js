@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, StatusBar, Image, TouchableOpacity} from 'react-native';
 import Dimensions from 'Dimensions';
 
-const theme = {
-    screenWidth: Math.round(Dimensions.get('window').width),
-    screenHeight: Math.round(Dimensions.get('window').height)/6 + 30,
+const screenSize = {
+    width: Math.round(Dimensions.get('window').width),
+    height: Math.round(Dimensions.get('window').height),
 }
 
 const Utils = {
@@ -20,19 +20,23 @@ export default class MainDashboard extends Component {
         this.navigation = this.props.navigation;
     }
 
+    componentWillMount(){
+        StatusBar.setHidden(false);
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 {/* <StatusBar translucent backgroundColor="transparent" /> */}                
                 <View style={styles.header}>
-                    <View style={styles.headerIcon} >                        
-                        <Image source={require('../../assets/powerbutton.png')} style={styles.powerOffIcon}/>
+                    <View style={styles.headerContent}>                        
+                        <Image source={require('../../assets/powerbutton.png')} style={styles.powerOffIcon} resizeMode = "stretch" />
                     </View>   
-                    <View>
-                        <Image style={styles.headerLogo} source={require('../../assets/logo_transparent.png')} />
+                    <View style={styles.headerContent}>
+                        <Image style={styles.headerLogo} source={require('../../assets/logo_transparent.png')} resizeMode = "stretch" />
                     </View>   
-                    <View style={styles.headerIcon}>
-                        <Image source={require('../../assets/ring.png')} style={styles.powerOffIcon}/>
+                    <View style={styles.headerContent}>
+                        <Image source={require('../../assets/ring.png')} style={styles.powerOffIcon} resizeMode = "stretch"/>
                     </View>                  
                 </View>
                 <View style={styles.otherSection}>
@@ -41,14 +45,14 @@ export default class MainDashboard extends Component {
                             <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Order #0001</Text>
                             <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>
                                 <View style={{flex:1}}>
-                                    <Text style={styles.detailTxt}>CUSTOMER:</Text>
-                                    <Text style={styles.detailTxt}>ADDRESS:</Text>
-                                    <Text style={styles.detailTxt}>PAYING WIDTH:</Text>
+                                    <Text style={styles.cmpTxt}>CUSTOMER:</Text>
+                                    <Text style={styles.cmpTxt}>ADDRESS:</Text>
+                                    <Text style={styles.cmpTxt}>PAYING WIDTH:</Text>
                                 </View>
                                 <View style={{flex:1}}>
-                                    <Text style={styles.detailTxt}>MARTY MCFLY</Text>
-                                    <Text style={styles.detailTxt}>CALLE 8 ORIENTE 818A</Text>
-                                    <Text style={styles.detailTxt}>CASH</Text>
+                                    <Text style={styles.cmpTxt}>MARTY MCFLY</Text>
+                                    <Text style={styles.cmpTxt}>CALLE 8 ORIENTE 818A</Text>
+                                    <Text style={styles.cmpTxt}>CASH</Text>
                                 </View>
                             </View>
                             <View style={{backgroundColor:'black',paddingLeft:10, paddingRight:10}}>
@@ -59,24 +63,24 @@ export default class MainDashboard extends Component {
                     <View style={styles.tipSection}>
                         <TouchableOpacity style={styles.tipsView} onPress={() => this.navigation.navigate('tips')}>
                             <Image source={require('../../assets/tips.png')} style={styles.iconImg}/>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Tips</Text>
-                            <Text style={styles.detailTxt}>CHECK YOUR TIPS</Text>
-                        </TouchableOpacity>   
-                        <TouchableOpacity style={styles.tipsView}>
+                            <Text style={styles.cmpTitle}>Tips</Text>
+                            <Text style={styles.cmpTxt}>CHECK YOUR TIPS</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.tipsView} onPress={() => this.navigation.navigate('orders')}>
                             <Image source={require('../../assets/order.png')} style={styles.iconImg}/>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Orders</Text>
-                            <Text style={styles.detailTxt}>CHECK YOUR ORDERS</Text>
-                        </TouchableOpacity>                   
+                            <Text style={styles.cmpTitle}>Orders</Text>
+                            <Text style={styles.cmpTxt}>CHECK YOUR ORDERS</Text>
+                        </TouchableOpacity>      
                     </View>
                     <View style={styles.workTimeSection}>
                         <TouchableOpacity style={styles.orderView}>
                             <Image source={require('../../assets/time.png')} style={styles.iconImg}/>
                             <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>"Working Time</Text>
-                            <Text style={styles.detailTxt}>YOUR WORKING TIME</Text>
+                            <Text style={styles.cmpTxt}>YOUR WORKING TIME</Text>
                         </TouchableOpacity>                    
                     </View>
-                    <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingBottom:'2%'}}>
-                        <Text style={{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03}}>REPROT</Text>
+                    <TouchableOpacity style={styles.reportView}>
+                        <Text style={styles.reportTxt}>REPROT</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -92,20 +96,24 @@ const styles = StyleSheet.create({
         width:'100%'
     },
     header:{
-        flex:1, 
+        flex:1,
         flexDirection:'row',        
-        justifyContent: 'space-between',   
-        paddingTop:10,
-        paddingBottom:30,
-        backgroundColor:'#ffffff'     
+        justifyContent: 'space-between',
+        backgroundColor:'#ffffff',        
+        paddingHorizontal: screenSize.width * (50 / 750),     
+        marginTop:10   
     },  
-    headerLogo:{
-        resizeMode:'stretch',
-        width:Utils.logoImgSize.width,
-        height:Utils.logoImgSize.height,    
+    headerContent:{        
+        alignItems:'center',
+        justifyContent:'center',    
+    },  
+    headerLogo:{        
+        width: screenSize.width * (229 / 750) *1.3,
+        height: screenSize.height * (90 / 1330) *1.3,
     },
     powerOffIcon:{        
-          
+        width: screenSize.width * (43 / 750) * 1.3,
+        height: screenSize.width * (43 / 750) * 1.3,
     },
     headerIcon:{
         flex:1,
@@ -113,10 +121,18 @@ const styles = StyleSheet.create({
         alignItems:'center',  
     },
     otherSection:{
-        flex:5, 
+        flex:8, 
         justifyContent:'space-between',
         alignItems:'center',      
-        backgroundColor:'#ffffff',         
+        backgroundColor:'#ffffff',  
+        paddingHorizontal: screenSize.width * (50 / 750),  
+        marginTop:20            
+    },
+    cmpTitle:{
+        fontWeight:'bold',
+        color:'#282828', 
+        opacity:0.8, 
+        fontSize:18
     },
     orderSection:{
         // flex:1, 
@@ -126,36 +142,15 @@ const styles = StyleSheet.create({
         alignItems:'center', 
         justifyContent:'center',
         backgroundColor:'#fafafa',
-        width:'100%',
-        paddingLeft:20,
-        paddingRight:20,
-        height:theme.screenHeight - 30
-    },
-    tipSection:{  
-        flexDirection:'row',
-        alignItems:'center', 
-        justifyContent:"space-between",
-        backgroundColor:'#fafafa',
-        width:'100%',
-        paddingLeft:20,
-        paddingRight:20,
-        height:theme.screenHeight - 30
-    },
-    workTimeSection:{
-        alignItems:'center', 
-        justifyContent:'center',
-        backgroundColor:'#fafafa',
-        width:'100%',
-        paddingLeft:20,
-        paddingRight:20,
-        height:theme.screenHeight - 30
+        width:'100%',   
+        height:  screenSize.height * (309 / 1330)
     },
     orderView:{        
         alignItems:'center', 
         justifyContent:'center', 
         backgroundColor:'#ffffff', 
         textAlign:'center',
-        height:theme.screenHeight,
+        height:'100%',
         width:'100%',
         borderColor:'#c8c8c8',
         borderWidth:1,
@@ -166,11 +161,26 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 15,
     },
+    tipSection:{  
+        flexDirection:'row',
+        alignItems:'center', 
+        justifyContent:"space-between",
+        backgroundColor:'#fafafa',
+        width:'100%',
+        height: screenSize.height * (309 / 1330),
+    },
+    workTimeSection:{
+        alignItems:'center', 
+        justifyContent:'center',
+        backgroundColor:'#fafafa',
+        width:'100%',
+        height: screenSize.height * (309 / 1330),
+    },
+    
     tipsView:{
         alignItems:'center', 
         justifyContent:'center', 
-        backgroundColor:'#ffffff', 
-        height:theme.screenHeight,
+        backgroundColor:'#ffffff',    
         width:'47%',
         borderColor:'#c8c8c8',
         borderWidth:1,
@@ -180,8 +190,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
         shadowRadius: 2,
         elevation: 15,
+        height:'100%'
     },
-    detailTxt:{
+    cmpTxt:{
         fontSize:12,
         color:'#999999',
     },
@@ -189,6 +200,9 @@ const styles = StyleSheet.create({
         height:18,
         width:18,
         resizeMode:'stretch',
-    }
+    },
+    reportView:{justifyContent:'center',alignItems:'center',paddingBottom:'2%'},
+    reportTxt:{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03}
+
 })
 
