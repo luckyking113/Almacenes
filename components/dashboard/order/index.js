@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, View, ScrollView, Image } from 'react-native';
 
 import Dimensions from 'Dimensions';
-import { ThemeColors } from 'react-navigation';
 
 const screenSize = {
     width: Math.round(Dimensions.get('window').width),
@@ -25,84 +24,42 @@ export default class OrderScreen extends Component {
                                 <Text style={styles.notifiedTxt}>1</Text>
                             </View>
                             <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
+                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
                             </View>
                         </View>
                         <View style={styles.orderDetailTxt}>
                             <Text>$20.00 | Product name</Text>
                             <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
-                    </View>
-                    <View style={styles.orderDetailContainer}>
-                        <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>4</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
-                        </View>
-                    </View>
+                    </View>         
                     <View style={styles.orderDetailContainer}>
                         <View style={styles.orderDetailSection}>
                             <View style={styles.notifiedOrder}>
                                 <Text style={styles.notifiedTxt}>1</Text>
                             </View>
                             <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
+                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
                             </View>
                         </View>
                         <View style={styles.orderDetailTxt}>
                             <Text>$20.00 | Product name</Text>
                             <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
-                    </View>
+                    </View>     
                     <View style={styles.orderDetailContainer}>
                         <View style={styles.orderDetailSection}>
                             <View style={styles.notifiedOrder}>
                                 <Text style={styles.notifiedTxt}>1</Text>
                             </View>
                             <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
+                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
                             </View>
                         </View>
                         <View style={styles.orderDetailTxt}>
                             <Text>$20.00 | Product name</Text>
                             <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
-                    </View>
-                    <View style={styles.orderDetailContainer}>
-                        <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>5</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
-                        </View>
-                    </View>
-                    <View style={styles.orderDetailContainer}>
-                        <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>2</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
-                        </View>
-                    </View>
+                    </View>                
                 </ScrollView>        
             </View>
         );

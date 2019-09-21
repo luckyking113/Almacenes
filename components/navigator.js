@@ -11,10 +11,10 @@ import {Text, View, StyleSheet, StatusBar} from 'react-native';
 import {createSwitchNavigator, createAppContainer, NavigationActions } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './login/loginscreen';
-import MainDashboard from './dashboard/mainboardscreen';
+import MainDashboard from './dashboard';
 import OrderScreen from './dashboard/order';
 import TipsScreen from './dashboard/tips';
-import Icon from 'react-native-vector-icons/AntDesign';
+import HeaderMain from './dashboard/headerMain';
 
 /*export default class Navigator extends Component {
     componentWillMount(){
@@ -26,54 +26,35 @@ import Icon from 'react-native-vector-icons/AntDesign';
         );
 	}
 };*/
-/*
-const HomeNavigator = createStackNavigator(
-    {
-        dashboard:{
-            screen:MainDashboard,
-            navigationOptions: {
-                title: "LOGIN",
-                headerStyle: {
-                  backgroundColor: 'red'
-                },
-                headerTintColor: 'blue'
-            }
-        },
-        order:{
-            screen:OrderScreen,
-        },
-        tips:{
-            screen:TipsScreen
-        }
-    },  
-    {
-        initialRouteName: 'dashboard',        
-    }
-);*/
-
 const AppSwitchNavigator = createStackNavigator(
     {
         login:{
-            screen:LoginScreen,
-            navigationOptions:{
-                header:null
-            }
+            screen:LoginScreen,    
         },
         dashboard:{
-            screen:MainDashboard,
-            navigationOptions:{
-                header:null
-            }
+            screen:MainDashboard, 
         },
         order:{
-            screen:OrderScreen,            
+            screen:OrderScreen,         
+            navigationOptions:{
+                header:<HeaderMain />
+            }   
         },
         tips:{
-            screen:TipsScreen
+            screen:TipsScreen,
+            navigationOptions:{
+                header:<HeaderMain />
+            }
         }
     },
     {
         initialRouteName: 'login',
+        navigationOptions:{
+            header:null,
+        },
+        defaultNavigationOptions:{
+            header:null
+        }
     },
 );
 
