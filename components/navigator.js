@@ -59,7 +59,7 @@ const AppSwitchNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'dashboard',
+        initialRouteName: 'tips',
         navigationOptions:{
             header:null,
         },

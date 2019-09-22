@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, StatusBar, Image, TouchableOpacity} from 'react-native';
+import Carousel from 'react-native-anchor-carousel';
 import Dimensions from 'Dimensions';
 
 const screenSize = {
@@ -7,18 +8,53 @@ const screenSize = {
     height: Math.round(Dimensions.get('window').height),
 }
 
-const Utils = {
-    logoImgSize:{
-        width: Dimensions.get('window').width/2 - Dimensions.get('window').width*5/100,
-        height: Dimensions.get('window').height/6 - (Dimensions.get('window').height/6) * 20 / 100
-    }
-}
+const carouselData = [
+    { orderList: 'Order #0001' },
+    { orderList: 'Order #0002' },
+    { orderList: 'Order #0003' },
+    { orderList: 'Order #0004' },
+    { orderList: 'Order #0005' },
+    { orderList: 'Order #0006' },
+    { orderList: 'Order #0007' },
+    { orderList: 'Order #0008' }
+];
 
 export default class MainDashboard extends Component {
     constructor(props){
         super(props);
         this.navigation = this.props.navigation;
     }
+
+    renderItem = ({ item, index }) => {    
+        return (
+        //   <TouchableOpacity
+        //     style={[styles.item, { backgroundColor }]}
+        //     onPress={() => {
+        //       this.numberCarousel.scrollToIndex(index);
+        //     }}
+        //   >
+        //     <Text style={styles.text}>{index.toString()}</Text>
+        //   </TouchableOpacity>
+            <TouchableOpacity style={styles.orderView} onPress={() => {this.navigation.navigate('order')}}>
+                <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>{item.orderList}</Text>
+                <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>
+                    <View style={{flex:1}}>
+                        <Text style={styles.cmpTxt}>CUSTOMER:</Text>
+                        <Text style={styles.cmpTxt}>ADDRESS:</Text>
+                        <Text style={styles.cmpTxt}>PAYING WIDTH:</Text>
+                    </View>
+                    <View style={{flex:1}}>
+                        <Text style={styles.cmpTxt}>MARTY MCFLY</Text>
+                        <Text style={styles.cmpTxt}>CALLE 8 ORIENTE 818A</Text>
+                        <Text style={styles.cmpTxt}>CASH</Text>
+                    </View>
+                </View>
+                <View style={{backgroundColor:'black',paddingLeft:10, paddingRight:10}}>
+                    <Text style={{fontWeight:'bold',color:'#00d44d', opacity:0.8, fontSize:18}}>04:19</Text>
+                </View>                            
+            </TouchableOpacity> 
+        );
+    };
 
     componentWillMount(){
         StatusBar.setHidden(false);
@@ -39,27 +75,23 @@ export default class MainDashboard extends Component {
                         <Image source={require('../../assets/ring.png')} style={styles.powerOffIcon} resizeMode = "stretch"/>
                     </View>                  
                 </View>
-                <View style={styles.otherSection}>
+                <View style={styles.otherSection}>   
                     <View style={styles.orderSection}>
-                        <TouchableOpacity style={styles.orderView} onPress={() => this.navigation.navigate('order')}>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Order #0001</Text>
-                            <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>
-                                <View style={{flex:1}}>
-                                    <Text style={styles.cmpTxt}>CUSTOMER:</Text>
-                                    <Text style={styles.cmpTxt}>ADDRESS:</Text>
-                                    <Text style={styles.cmpTxt}>PAYING WIDTH:</Text>
-                                </View>
-                                <View style={{flex:1}}>
-                                    <Text style={styles.cmpTxt}>MARTY MCFLY</Text>
-                                    <Text style={styles.cmpTxt}>CALLE 8 ORIENTE 818A</Text>
-                                    <Text style={styles.cmpTxt}>CASH</Text>
-                                </View>
-                            </View>
-                            <View style={{backgroundColor:'black',paddingLeft:10, paddingRight:10}}>
-                                <Text style={{fontWeight:'bold',color:'#00d44d', opacity:0.8, fontSize:18}}>04:19</Text>
-                            </View>                            
-                        </TouchableOpacity>                    
-                    </View>
+                        <Carousel
+                            style={styles.carouselSection}
+                            data={carouselData}
+                            renderItem={this.renderItem}
+                            itemWidth={screenSize.width - screenSize.width * (50 * 2 / 750)}
+                            containerWidth={screenSize.width}
+                            ref={(c) => {
+                                this.numberCarousel = c;
+                            }}
+                            separatorWidth = {-screenSize.width * (50 / 750)-8}
+                            initialIndex = {2}
+                            itemContainerStyle={styles.itemStyle}                    
+                        />
+                    </View>                             
+                    
                     <View style={styles.tipSection}>
                         <TouchableOpacity style={styles.tipsView} onPress={() => this.navigation.navigate('tips')}>
                             <Image source={require('../../assets/tips.png')} style={styles.iconImg}/>
@@ -121,12 +153,11 @@ const styles = StyleSheet.create({
         alignItems:'center',  
     },
     otherSection:{
-        flex:8, 
+        flex:7, 
         justifyContent:'space-between',
         alignItems:'center',      
         backgroundColor:'#ffffff',  
-        paddingHorizontal: screenSize.width * (50 / 750),  
-        marginTop:20            
+        paddingHorizontal: screenSize.width * (50 / 750),       
     },
     cmpTitle:{
         fontWeight:'bold',
@@ -134,23 +165,21 @@ const styles = StyleSheet.create({
         opacity:0.8, 
         fontSize:18
     },
-    orderSection:{
-        // flex:1, 
-        borderColor:'#c8c8c8',
-        borderBottomWidth:1,
-        borderTopWidth:1, 
-        alignItems:'center', 
-        justifyContent:'center',
-        backgroundColor:'#fafafa',
-        width:'100%',   
-        height:  screenSize.height * (309 / 1330)
+    orderSection:{             
+        backgroundColor:'#fafafa',        
+        height:  screenSize.height * (309 / 1330) + 20,        
+    },
+    carouselSection:{
+        backgroundColor:'#fafafa',        
+        height:  screenSize.height * (309 / 1330),     
+        marginTop:-10
     },
     orderView:{        
         alignItems:'center', 
         justifyContent:'center', 
         backgroundColor:'#ffffff', 
         textAlign:'center',
-        height:'100%',
+        height:  screenSize.height * (309 / 1330),
         width:'100%',
         borderColor:'#c8c8c8',
         borderWidth:1,
@@ -160,6 +189,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
         shadowRadius: 2,
         elevation: 15,
+        zIndex:100,
     },
     tipSection:{  
         flexDirection:'row',
@@ -168,6 +198,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#fafafa',
         width:'100%',
         height: screenSize.height * (309 / 1330),
+        marginTop:-10
     },
     workTimeSection:{
         alignItems:'center', 
@@ -202,7 +233,27 @@ const styles = StyleSheet.create({
         resizeMode:'stretch',
     },
     reportView:{justifyContent:'center',alignItems:'center',paddingBottom:'2%'},
-    reportTxt:{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03}
+    reportTxt:{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03},
+    // carousel: {
+    //     flex: 1,
+    //     backgroundColor: 'white',
+    //     zIndex:10
+        
+    //   },
+    //   item: {
+    //     borderWidth: 2,
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     zIndex:-1
+    //   },
+    //   itemStyle:{
+    //       zIndex:-1,
+    //     //   backgroundColor:'black'
+    //   },
+    //   text: {
+    //     fontSize: 100,
+    //     fontWeight: 'bold'
+    //   }
 
 })
 

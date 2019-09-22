@@ -20,7 +20,7 @@ export default class OrderScreen extends Component {
                     <View style={styles.orderDetailContainer}>
                         <View style={styles.orderDetailSection}>
                             <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>1</Text>
+                                <Text style={styles.notifiedTxt}>3</Text>
                             </View>
                             <View style={styles.orderImg}>
                                 <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
