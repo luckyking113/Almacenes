@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, ScrollView, Image } from 'react-native';
+import { Text, StyleSheet, View, ScrollView, Image, Button, TouchableOpacity } from 'react-native';
 import Dimensions from 'Dimensions';
+import ActionSheet from 'react-native-actionsheet';
 
 const screenSize = {
     width: Math.round(Dimensions.get('window').width),
@@ -8,7 +9,35 @@ const screenSize = {
 }
 
 export default class OrderScreen extends Component {
+	showActionSheet = () => {
+		//To show the Bottom ActionSheet
+		this.ActionSheet.show();
+	};
+
     render() {
+		var optionArray = [
+			<View style={styles.actionContainer}>
+				<View style={styles.selectedOrderContainer}>
+					<View style={styles.selectedOrderContent}>
+						<View style={styles.userImg}>
+							<Text>Image</Text>	
+						</View>
+						<View style={styles.selectedOrderDetail}>
+							<Text>Order Content</Text>
+						</View>
+					</View>
+					<View style={styles.orderStatusBtn}>
+						<TouchableOpacity>
+							<Text>Order has been picked up</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={styles.selectedOrderStatus}>
+					<Text style={{color: 'yellow'}}>Banana</Text>
+				</View>
+			</View>,
+			'Cancel',
+		];
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollContainer}>
@@ -19,48 +48,38 @@ export default class OrderScreen extends Component {
                     </View>
                     <View style={styles.orderDetailContainer}>
                         <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>3</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
+							<TouchableOpacity onPress={this.showActionSheet}>
+								<View style={styles.notifiedOrder}>
+									<Text style={styles.notifiedTxt}>3</Text>
+								</View>
+								<View style={styles.orderImg}>
+									<Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
+								</View>
+							</TouchableOpacity>
                         </View>
                         <View style={styles.orderDetailTxt}>
                             <Text>$20.00 | Product name</Text>
                             <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
-                    </View>         
-                    <View style={styles.orderDetailContainer}>
-                        <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>1</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
-                        </View>
-                    </View>     
-                    <View style={styles.orderDetailContainer}>
-                        <View style={styles.orderDetailSection}>
-                            <View style={styles.notifiedOrder}>
-                                <Text style={styles.notifiedTxt}>1</Text>
-                            </View>
-                            <View style={styles.orderImg}>
-                                <Image source={require('../../../assets/orderimg1.png')} style={styles.orderDetailImg}/>
-                            </View>
-                        </View>
-                        <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
-                        </View>
-                    </View>     
-                </ScrollView>        
-            </View>
+                    </View>
+                </ScrollView> 
+			    <ActionSheet
+					ref={o => (this.ActionSheet = o)}
+					//Title of the Bottom Sheet
+					// title={'Which one do you like ?'}
+					//Options Array to show in bottom sheet
+					options={optionArray}
+					//Define cancel button index in the option array
+					//this will take the cancel option in bottom and will highlight it
+					cancelButtonIndex={0}
+					//If you want to highlight any specific option you can use below prop
+					// destructiveButtonIndex={0}
+					// onPress={index => {
+					// 	//Clicking on the option will give you the index of the option clicked
+					// 	alert(optionArray[index]);
+					// }}
+				/>
+			</View>
         );
     }
 }
@@ -130,5 +149,40 @@ const styles = StyleSheet.create({
         flexDirection:'column',        
         paddingLeft: screenSize.width * 3/100,
         marginTop:15
-    }
+	},
+	
+	actionContainer:{
+		borderTopLeftRadius:20,
+		borderTopRightRadius:20,
+		padding:10,
+		width: screenSize.width,
+		justifyContent:'center',
+		alignItems:'center',
+		flexDirection:'row'
+	},
+	selectedOrderContainer:{
+		flex:2,
+		flexDirection:'column',
+		justifyContent:'center',
+		alignItems:'center',
+	},
+	selectedOrderStatus:{
+		flex:1,
+		flexDirection:'column'
+	},
+
+	selectedOrderContent:{
+		flexDirection:'row'
+	},
+
+	orderStatusBtn:{
+
+	},
+	userImg:{
+
+	},
+	selectedOrderDetai:{
+		
+	}
+
 });

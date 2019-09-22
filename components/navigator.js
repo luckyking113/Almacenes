@@ -124,7 +124,7 @@ const AppSwitchNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'splash',
+        initialRouteName: 'order',
         navigationOptions:{
             header:null,
         },
