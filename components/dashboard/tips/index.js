@@ -10,6 +10,13 @@ const screenSize = {
 
 
 export default class TipsScreen extends Component {
+    state = {
+        index: 0,
+        routes: [
+          { key: 'first', title: 'First' },
+          { key: 'second', title: 'Second' },
+        ],
+    };
     render() {
         return (
             <View style={styles.container}>
@@ -19,7 +26,9 @@ export default class TipsScreen extends Component {
                         <Text style={styles.amount}>$50.00</Text>
                     </LinearGradient>
                 </View>
-                <Text>TipsScreen</Text>
+                <View>
+                    <Text>asdfasdf</Text>
+                </View>
             </View>
         );
     }

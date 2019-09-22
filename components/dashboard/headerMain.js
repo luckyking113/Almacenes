@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
         paddingHorizontal:screenSize.screenWidth * 5/100,   
         borderWidth:1,     
         borderColor: '#c8c8c8',
+        height:70,
     },
     inputIcon: {
         width: 30,
