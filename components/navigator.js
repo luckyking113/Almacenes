@@ -13,12 +13,15 @@ import { createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './login/loginscreen';
 import MainDashboard from './dashboard';
 import OrderScreen from './dashboard/order';
-import TipsScreen from './dashboard/tips';
+import WorkingTime from './dashboard/workingtime';
 import HeaderMain from './dashboard/headerMain';
 import Orders from './dashboard/orders';
 import SplashScreen from './splash';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import TipsHeaderMain from './dashboard/tips/tipsheaderMain';
+import TipsDay from './dashboard/tips/tipsday';
+import TipsWeek from './dashboard/tips/tipsWeek';
+import TipsMonths from './dashboard/tips/tipsMonths';
 
 /*export default class Navigator extends Component {
     componentWillMount(){
@@ -31,47 +34,58 @@ import TipsHeaderMain from './dashboard/tips/tipsheaderMain';
 	}
 };*/
 
-class TipsDay extends React.Component {
+class TipsDayScreen extends React.Component {
     render() {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>TipsDay!</Text>
-        </View>
+        <TipsDay />
       );
     }
   }
   
-  class TipsWeek extends React.Component {
+  class TipsWeekScreen extends React.Component {
     render() {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>TipsWeek!</Text>
-        </View>
+        <TipsWeek />
       );
     }
   }
 
-  class TipsMonths extends React.Component {
+  class TipsMonthsScreen extends React.Component {
     render() {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text>TipsMonths!</Text>
-        </View>
+        <TipsMonths />
       );
     }
   }
 
-  const AppTopTabNavigation = createMaterialTopTabNavigator({
-    day:{
-        screen:TipsDay
+  const AppTopTabNavigation = createMaterialTopTabNavigator(
+    {
+      day:{
+          screen:TipsDayScreen
+      },
+      Week:{
+          screen:TipsWeekScreen
+      },
+      MonthS:{
+          screen:TipsMonthsScreen
+      }
     },
-    Week:{
-        screen:TipsWeek
-    },
-    MonthS:{
-        screen:TipsMonths
+    {
+      initialRouteName: 'day',
+      swipeEnabled: true,
+      tabBarOptions:{
+        activeTintColor:'red',
+        labelStyle: {          
+          color:'#999999'
+        },
+        style: { 
+          backgroundColor: '#fafafa',
+          borderColor:'#999999',  
+          borderLeftColor:'#999999'        
+        }
+      }
     }
-});
+);
   
 const AppSwitchNavigator = createStackNavigator(
     {
@@ -96,6 +110,12 @@ const AppSwitchNavigator = createStackNavigator(
                 header:<TipsHeaderMain />
             }
         },
+        workTime:{
+            screen:WorkingTime,
+            navigationOptions:{
+              header:<HeaderMain />
+            }   
+        },
         orders:{
             screen:Orders,
             navigationOptions:{
@@ -104,7 +124,7 @@ const AppSwitchNavigator = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'tips',
+        initialRouteName: 'orders',
         navigationOptions:{
             header:null,
         },

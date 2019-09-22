@@ -25,8 +25,12 @@ export default class Orders extends Component {
                 <TouchableOpacity style={styles.orderView} onPress={() => this.navigation.navigate('order')}>                    
                     <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>                        
                         <View style={{flex:2.5}}>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Order #0001</Text>
-                            <Text style={styles.detailTxt}>CUSTOMER: <Text>MARTY MCFLY</Text></Text>
+                            <Text style={styles.orderTitle}>Order #0001</Text>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style={styles.detailTxt}>CUSTOMER: </Text>
+                                <Text>MARTY MCFLY</Text>
+                            </View>
+                            
                             <Text style={styles.detailTxt}>ADDRESS: <Text>CALLE 8 ORIENTE 818A</Text></Text>
                             <Text style={styles.detailTxt}>PAYING WIDTH: <Text>BANK CARD</Text></Text>
                             <Text style={styles.detailTxt}>Waiting for pickup</Text>
@@ -46,35 +50,7 @@ export default class Orders extends Component {
                             </View>
                         </View>
                     </View>                    
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.orderView} onPress={() => this.navigation.navigate('order')}>                    
-               
-                    <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>                        
-                        <View style={{flex:2.5}}>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Order #0001</Text>
-                            <Text style={styles.detailTxt}>CUSTOMER: <Text>MARTY MCFLY</Text></Text>
-                            <Text style={styles.detailTxt}>ADDRESS: <Text>CALLE 8 ORIENTE 818A</Text></Text>
-                            <Text style={styles.detailTxt}>PAYING WIDTH: <Text>BANK CARD</Text></Text>
-                            <Text style={styles.detailTxt}>Waiting for pickup</Text>
-                        </View>
-                        <View style={{flex:1.5,        
-                                flexDirection: 'column',
-                                justifyContent: 'space-between'}
-                            }>
-                            <View style={{alignSelf:'flex-end',marginBottom:30}}>
-                                <Text style={styles.detailTxt}>15.17.2019</Text>
-                                <Text style={styles.detailTxt}>04:29 PM</Text>                            
-                            </View>
-                            <View style={{alignSelf:'flex-end'}}>
-                                <View style={{backgroundColor:'black',paddingLeft:10, paddingRight:10}}>
-                                    <Text style={{fontWeight:'bold',color:'#00d44d', opacity:0.8, fontSize:18}}>04:19</Text>
-                                </View> 
-                            </View>
-                        </View>
-                    </View>  
-              
-                </TouchableOpacity>
+                </TouchableOpacity>        
             </ScrollView>
         );
     }
@@ -102,6 +78,12 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 15,
         marginBottom:theme.screenWidth * 5 / 100 + 10
+    },
+    orderTitle:{
+        fontWeight:'bold',
+        color:'#282828', 
+        opacity:0.8, 
+        fontSize:18
     },
     detailTxt:{
         fontSize:12,

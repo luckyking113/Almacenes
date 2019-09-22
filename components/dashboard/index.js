@@ -38,12 +38,12 @@ export default class MainDashboard extends Component {
             <TouchableOpacity style={styles.orderView} onPress={() => {this.navigation.navigate('order')}}>
                 <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>{item.orderList}</Text>
                 <View style={{flexDirection:'row',textAlign:'center',alignItems:'center',paddingLeft:'10%',paddingRight:'10%',paddingTop:'1%',paddingBottom:'1%'}}>
-                    <View style={{flex:1}}>
+                    <View style={{flex:3}}>
                         <Text style={styles.cmpTxt}>CUSTOMER:</Text>
                         <Text style={styles.cmpTxt}>ADDRESS:</Text>
                         <Text style={styles.cmpTxt}>PAYING WIDTH:</Text>
                     </View>
-                    <View style={{flex:1}}>
+                    <View style={{flex:4}}>
                         <Text style={styles.cmpTxt}>MARTY MCFLY</Text>
                         <Text style={styles.cmpTxt}>CALLE 8 ORIENTE 818A</Text>
                         <Text style={styles.cmpTxt}>CASH</Text>
@@ -105,9 +105,9 @@ export default class MainDashboard extends Component {
                         </TouchableOpacity>      
                     </View>
                     <View style={styles.workTimeSection}>
-                        <TouchableOpacity style={styles.orderView}>
+                        <TouchableOpacity style={styles.orderView} onPress={() => this.navigation.navigate('workTime')}>
                             <Image source={require('../../assets/time.png')} style={styles.iconImg}/>
-                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>"Working Time</Text>
+                            <Text style={{fontWeight:'bold',color:'#282828', opacity:0.8, fontSize:18}}>Working Time</Text>
                             <Text style={styles.cmpTxt}>YOUR WORKING TIME</Text>
                         </TouchableOpacity>                    
                     </View>
