@@ -15,7 +15,7 @@ const Utils = {
     }
 }
 
-export default class Orders extends Component {
+export default class AssignedOrders extends Component {
     constructor(props){
         super(props);
         this.navigation = this.props.navigation;

@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator} from 'react-navigation-stack';
 import LoginScreen from './login/loginscreen';
@@ -15,13 +15,14 @@ import MainDashboard from './dashboard';
 import OrderScreen from './dashboard/order';
 import WorkingTime from './dashboard/workingtime';
 import HeaderMain from './dashboard/headerMain';
-import Orders from './dashboard/orders';
+import AssignedOrders from './dashboard/assignedorders';
 import SplashScreen from './splash';
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import TipsHeaderMain from './dashboard/tips/tipsheaderMain';
 import TipsDay from './dashboard/tips/tipsday';
 import TipsWeek from './dashboard/tips/tipsWeek';
 import TipsMonths from './dashboard/tips/tipsMonths';
+import OrderHeaderMain from './dashboard/order/orderHeader';
 
 /*export default class Navigator extends Component {
     componentWillMount(){
@@ -100,31 +101,31 @@ const AppSwitchNavigator = createStackNavigator(
         },
         order:{
             screen:OrderScreen,         
-            navigationOptions:{
-                header:<HeaderMain />
-            }   
+            navigationOptions:props =>({
+                header:<OrderHeaderMain title="Order #0001" navigation = {props.navigation} />
+            })   
         },
         tips:{
             screen:AppTopTabNavigation,
-            navigationOptions:{
-                header:<TipsHeaderMain />
-            }
+            navigationOptions:props=>({
+                header:<TipsHeaderMain navigation = {props.navigation}/>
+            })
         },
         workTime:{
             screen:WorkingTime,
-            navigationOptions:{
-              header:<HeaderMain />
-            }   
+            navigationOptions:props=>({
+              header:<HeaderMain title="Working Time" navigation = {props.navigation}/>
+            })   
         },
-        orders:{
-            screen:Orders,
-            navigationOptions:{
-                header:<HeaderMain />
-            }
+        assignedorders:{
+            screen:AssignedOrders,
+            navigationOptions:props=>({
+                header:<HeaderMain title="Assigned Orders" navigation = {props.navigation}/>
+            })
         }
     },
     {
-        initialRouteName: 'order',
+        initialRouteName: 'splash',
         navigationOptions:{
             header:null,
         },

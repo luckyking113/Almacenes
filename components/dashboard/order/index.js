@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, View, ScrollView, Image, Button, TouchableOpacity } from 'react-native';
 import Dimensions from 'Dimensions';
-import ActionSheet from 'react-native-actionsheet';
+import RBSheet from "react-native-raw-bottom-sheet";
+import LinearGradient from 'react-native-linear-gradient';
 
 const screenSize = {
     width: Math.round(Dimensions.get('window').width),
@@ -9,35 +10,9 @@ const screenSize = {
 }
 
 export default class OrderScreen extends Component {
-	showActionSheet = () => {
-		//To show the Bottom ActionSheet
-		this.ActionSheet.show();
-	};
-
     render() {
-		var optionArray = [
-			<View style={styles.actionContainer}>
-				<View style={styles.selectedOrderContainer}>
-					<View style={styles.selectedOrderContent}>
-						<View style={styles.userImg}>
-							<Text>Image</Text>	
-						</View>
-						<View style={styles.selectedOrderDetail}>
-							<Text>Order Content</Text>
-						</View>
-					</View>
-					<View style={styles.orderStatusBtn}>
-						<TouchableOpacity>
-							<Text>Order has been picked up</Text>
-						</TouchableOpacity>
-					</View>
-				</View>
-				<View style={styles.selectedOrderStatus}>
-					<Text style={{color: 'yellow'}}>Banana</Text>
-				</View>
-			</View>,
-			'Cancel',
-		];
+
+          
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollContainer}>
@@ -48,7 +23,10 @@ export default class OrderScreen extends Component {
                     </View>
                     <View style={styles.orderDetailContainer}>
                         <View style={styles.orderDetailSection}>
-							<TouchableOpacity onPress={this.showActionSheet}>
+                            <TouchableOpacity        
+                                onPress={() => {
+                                    this.RBSheet.open();
+                                }}>
 								<View style={styles.notifiedOrder}>
 									<Text style={styles.notifiedTxt}>3</Text>
 								</View>
@@ -58,27 +36,111 @@ export default class OrderScreen extends Component {
 							</TouchableOpacity>
                         </View>
                         <View style={styles.orderDetailTxt}>
-                            <Text>$20.00 | Product name</Text>
-                            <Text>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
+                            <Text style={{opacity:0.4}}>$20.00 | Product name</Text>
+                            <Text style={{opacity:0.8}}>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </Text>
                         </View>
                     </View>
                 </ScrollView> 
-			    <ActionSheet
-					ref={o => (this.ActionSheet = o)}
-					//Title of the Bottom Sheet
-					// title={'Which one do you like ?'}
-					//Options Array to show in bottom sheet
-					options={optionArray}
-					//Define cancel button index in the option array
-					//this will take the cancel option in bottom and will highlight it
-					cancelButtonIndex={0}
-					//If you want to highlight any specific option you can use below prop
-					// destructiveButtonIndex={0}
-					// onPress={index => {
-					// 	//Clicking on the option will give you the index of the option clicked
-					// 	alert(optionArray[index]);
-					// }}
-				/>
+                <RBSheet
+                    ref={ref => {
+                        this.RBSheet = ref;
+                    }}
+                    height={screenSize.heigth * (450/1330)}
+                    duration={screenSize.heigth * (450/1330)}
+                    customStyles={{
+                        container: {
+                            // justifyContent: "center",
+                            alignItems: "center",
+                            borderTopRightRadius: 20,
+                            borderTopLeftRadius: 20,
+                        }
+                    }}
+                    >
+                    <View>
+                        <View style={styles.RBheaderline}>
+                            <View style={styles.RBheaderWline}></View>
+                        </View>
+                        <View style={styles.RBContainer}>
+                            <View style={styles.RBOrderContainer}>
+                                <View style={styles.RBOrderDetail}>
+                                    <View style={styles.RBOrderImg}>
+                                        <Image source={require('../../../assets/actimg.png')} resizeMode="stretch" style={{width:'100%', height:'70%'}}/>
+                                    </View>
+                                    <View style={styles.RBOrderConent}>
+                                        <View style={{flexDirection:'row'}}>
+                                            <Text style={styles.RBorderHeader}>MARTY</Text>
+                                            <Text style={styles.RBorderHeaderBold}> MCFLY</Text>
+                                        </View>                                        
+                                        <View style={{marginTop:5}}>
+                                            <Text style={styles.RBdetailFont}>CALL 8 OTE. 818</Text>  
+                                            <Text style={styles.RBdetailFont}>SANTIAGO XICOTENCO</Text>  
+                                            <Text style={styles.RBdetailFont}>72810 SAN ANDRES CHOLULA, PUE</Text>  
+                                            <Text style={styles.RBdetailFontBold}>APARTMENT #202</Text>
+                                        </View>
+                                        
+                                        <View style={{marginTop:5}}>
+                                            <View style={{flexDirection:'row'}}>
+                                                <Text style={styles.RBdetailFont}>ORDER TOTAL: </Text>  
+                                                <Text style={styles.RBdetailFontBold}> $163</Text>  
+                                            </View>
+                                            
+                                            <View style={{flexDirection:'row'}}>
+                                                <Text style={styles.RBdetailFont}>PAYING WITH: </Text>  
+                                                <Text style={styles.RBdetailFontBold}> $200 CASH</Text>  
+                                            </View>                                  
+                                        </View>
+                                    </View>
+                                </View>
+                                <View style={{flex:1,width:'100%',alignItems:'center', justifyContent:"center"}}>
+                                    <TouchableOpacity
+                                        style={styles.button}
+                                        // onPress={() => {
+                                        // this.checkLogin();
+                                        // }}
+                                        >
+                                        <LinearGradient
+                                            colors={['#2aace3', '#1d759b']}
+                                            style={styles.button_content}
+                                            start={{
+                                                x: 0.1,
+                                                y: 0.1,
+                                            }}
+                                            end={{x: 0.9, y: 0.9}}>
+                                        <Text style={styles.buttonText}>Order has been picked up</Text>
+                                        </LinearGradient>
+                                    </TouchableOpacity>                       
+                                </View>                         
+                            </View> 
+                            <View style={styles.RBDuration}>
+                                <View style={{height:15, backgroundColor:'black', justifyContent:'center', alignItems:'center',paddingHorizontal:2}}>
+                                    <Text style={{fontWeight:'bold',color:'#00d44d', opacity:0.8}}>02:38</Text>
+                                </View>                                
+                                <View style={styles.RBdurationMapView}>
+                                    <View style={styles.RBOrderDetail1}>
+                                        <Image source={require('../../../assets/map.png')} resizeMode="stretch" style={{width:'100%', height:'100%'}} />
+                                    </View>
+                                    <View style={{flex:1,width:'100%',alignItems:'center', justifyContent:"center"}}>
+                                        <TouchableOpacity
+                                            style={styles.button}
+                                            // onPress={() => {
+                                            // this.checkLogin();
+                                            // }}
+                                            >
+                                            <LinearGradient
+                                                colors={['#009b01', '#00bf11','#00f026']}
+                                                style={styles.button_content}
+                                            >
+                                                <Image source={require('../../../assets/phone.png')} style={{width:23, height:23}} resizeMode="stretch"/>
+                                            </LinearGradient>
+                                        </TouchableOpacity>                       
+                                    </View> 
+                                </View>
+                            </View> 
+                            
+                        </View>
+                        
+                    </View>
+                </RBSheet>
 			</View>
         );
     }
@@ -89,7 +151,7 @@ const styles = StyleSheet.create({
         flex:1,
         backgroundColor:'#ffffff',        
         justifyContent:'center',
-        width: screenSize.width
+        width: screenSize.width,        
     },
     scrollContainer:{
         paddingHorizontal: screenSize.width *5/100,
@@ -151,38 +213,116 @@ const styles = StyleSheet.create({
         marginTop:15
 	},
 	
-	actionContainer:{
-		borderTopLeftRadius:20,
-		borderTopRightRadius:20,
-		padding:10,
-		width: screenSize.width,
-		justifyContent:'center',
-		alignItems:'center',
-		flexDirection:'row'
-	},
-	selectedOrderContainer:{
-		flex:2,
-		flexDirection:'column',
-		justifyContent:'center',
-		alignItems:'center',
-	},
-	selectedOrderStatus:{
-		flex:1,
-		flexDirection:'column'
-	},
+    RBheaderline:{
+        height:20, 
+        backgroundColor:'#6acaf0', 
+        width:screenSize.width,
+        justifyContent: 'center',
+        alignItems:'center',
+    },
+    RBheaderWline:{
+        height:6,
+        backgroundColor:'white',
+        borderRadius:5,
+        width:120,
+    },
+    RBContainer:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'space-between',
+        flexDirection:'row',
+        padding:20,
+        paddingTop:0,
+        width:screenSize.width
+    },
+    RBOrderContainer:{
+        flex:3,
+        // backgroundColor:'green',
+        height:'100%',
+        alignItems:'center',
+        justifyContent:'space-between',
+        flexDirection:'column',
+        paddingTop:20
+        
+    },
 
-	selectedOrderContent:{
-		flexDirection:'row'
-	},
-
-	orderStatusBtn:{
-
-	},
-	userImg:{
-
-	},
-	selectedOrderDetai:{
-		
-	}
-
+    RBOrderDetail:{
+        flex:3,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:'100%',
+        alignItems:'center',
+    },
+    RBOrderDetail1:{
+        flex:3,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        width:'100%',
+        alignItems:'center',
+        paddingVertical:5
+    },
+    RBOrderImg:{
+        flex:1,    
+        height:'100%',
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    RBOrderConent:{
+        flex:2,
+        // backgroundColor:'orange',
+        height:'100%',  
+        flexDirection:'column',
+        justifyContent: 'center',
+        marginLeft:10
+    },
+    RBdetailFont:{
+        fontSize:9,
+        opacity:0.4
+    },
+    RBdetailFontBold:{
+        fontSize:9,
+        opacity:0.6,
+        fontWeight:'bold'
+    },
+    RBorderHeader:{
+        opacity:0.4,
+        fontWeight:'bold',
+    },
+    RBorderHeaderBolD:{
+        opacity:0.6,
+        fontWeight:'bold',
+    },
+    button: {
+        width: '100%',        
+        borderRadius: 25,    
+        height: '100%', 
+        alignItems:'center'
+    },
+    button_content: {
+        width: '100%',
+        paddingVertical: 10,
+        borderRadius: 25,
+        height: '100%', 
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    buttonText: {
+        // fontSize: 16,
+        fontWeight: '500',
+        color: '#ffffff',
+        textAlign: 'center',
+        // fontFamily: theme.dashboad.font,
+    },
+    RBDuration:{
+        flex:1,
+        // backgroundColor:'blue',
+        height:'100%',
+        alignItems:'center',
+        marginLeft:5,
+        paddingTop:5
+    },
+    RBdurationMapView:{
+        width:'100%',
+        flex:1,    
+    }
 });

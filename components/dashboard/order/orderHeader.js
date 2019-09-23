@@ -7,7 +7,7 @@ const screenSize = {
     screenHeight: Math.round(Dimensions.get('window').height),
 }
 
-export default class HeaderMain extends Component {
+export default class OrderHeaderMain extends Component {
     constructor(props){
         super(props);
         this.navigation = this.props.navigation;
@@ -23,12 +23,13 @@ export default class HeaderMain extends Component {
                     onPress={() => {
                       this.navigationActiion();
                     }}>
-                    <Image source={require('../../assets/back.png')} style={styles.backBtn} />
+                    <Image source={require('../../../assets/back.png')} style={styles.backBtn} />
                 </TouchableOpacity>
                 <View style={styles.headerTitle}>
-                    <Text style={{color:'#525252', fontSize:18}}>{this.props.title}</Text>            
+                    <Text style={{color:'#525252', fontSize:15}}>{this.props.title}</Text>
+                    <Text style={{color:'#ff0000', fontSize:12, marginTop:5}}>WAITING FOR PICKUP</Text>
                 </View>                
-                <Image source={require('../../assets/search.png')} style={styles.searchBTN} resizeMode="stretch"/>
+                <Image source={require('../../../assets/search.png')} style={styles.searchBTN} resizeMode="stretch"/>
             </View>
         );
     }

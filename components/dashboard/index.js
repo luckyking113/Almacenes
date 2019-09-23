@@ -98,7 +98,7 @@ export default class MainDashboard extends Component {
                             <Text style={styles.cmpTitle}>Tips</Text>
                             <Text style={styles.cmpTxt}>CHECK YOUR TIPS</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.tipsView} onPress={() => this.navigation.navigate('orders')}>
+                        <TouchableOpacity style={styles.tipsView} onPress={() => this.navigation.navigate('assignedorders')}>
                             <Image source={require('../../assets/order.png')} style={styles.iconImg}/>
                             <Text style={styles.cmpTitle}>Orders</Text>
                             <Text style={styles.cmpTxt}>CHECK YOUR ORDERS</Text>
