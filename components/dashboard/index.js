@@ -50,7 +50,8 @@ export default class MainDashboard extends Component {
                     </View>
                 </View>
                 <View style={{backgroundColor:'black',paddingLeft:10, paddingRight:10}}>
-                    <Text style={{fontWeight:'bold',color:'#00d44d', opacity:0.8, fontSize:18}}>04:19</Text>
+                    <Text style={styles.time}>04:19</Text>
+                    <Text style={styles.time1}>04:19</Text>
                 </View>                            
             </TouchableOpacity> 
         );
@@ -233,27 +234,21 @@ const styles = StyleSheet.create({
         resizeMode:'stretch',
     },
     reportView:{justifyContent:'center',alignItems:'center',paddingBottom:'2%'},
-    reportTxt:{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03},
-    // carousel: {
-    //     flex: 1,
-    //     backgroundColor: 'white',
-    //     zIndex:10
-        
-    //   },
-    //   item: {
-    //     borderWidth: 2,
-    //     justifyContent: 'center',
-    //     alignItems: 'center',
-    //     zIndex:-1
-    //   },
-    //   itemStyle:{
-    //       zIndex:-1,
-    //     //   backgroundColor:'black'
-    //   },
-    //   text: {
-    //     fontSize: 100,
-    //     fontWeight: 'bold'
-    //   }
+    reportTxt:{fontSize:20, color:'#ff002b', borderBottomWidth:1, borderBottomColor:'#ff002b',letterSpacing:1.03},    
+    time:{
+        fontWeight:'bold',
+        color:'#00d44d', 
+        opacity:0.8, 
+        fontSize:18,
+        fontFamily: 'DS-DIGIB'
+    },
+    time1:{
+        fontWeight:'bold',
+        color:'#00d44d', 
+        opacity:0.8, 
+        fontSize:18,
+        fontFamily: 'ArgentumSans_Black'
+    }
 
 })
 

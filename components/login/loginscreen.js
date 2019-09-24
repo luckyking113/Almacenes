@@ -32,7 +32,7 @@ export default class LoginScreen extends Component {
                 <View style={styles.logoBox}>
                     <Image
                         style={styles.logo}
-                        source={require('../../assets/logo_transparent.png')}
+                        source={require('../../assets/logo.png')}
                         resizeMode="stretch"
                     />
                 </View>

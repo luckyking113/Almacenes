@@ -35,7 +35,7 @@ export default class TipsHeaderMain extends Component {
                     <View style={styles.navheaderTitle}>
                         <Text style={{color:'#525252', fontSize:18}}>Tips</Text>                        
                     </View>                
-                    <Icon name="search" size={26} style={styles.inputIcon} />
+                    <Image source={require('../../../assets/search.png')} style={styles.searchBTN} resizeMode="stretch"/>
                 </View>        
                 
                 <View style={styles.balance} >
@@ -113,5 +113,9 @@ const styles = StyleSheet.create({
         color:'#ffffff',
         fontSize:50,
         fontWeight:'bold'
+    },
+    searchBTN:{        
+        width:23,        
+        height:25    
     }
 });
